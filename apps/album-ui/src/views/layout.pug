@@ -1,0 +1,32 @@
+html
+  head
+    link(rel="stylesheet" href="https://cdn.rtlcss.com/semantic-ui/2.4.1/semantic.rtl.min.css")
+    link(rel='stylesheet' href="/stylesheets/style.css")
+    link(rel='icon' href='/images/favicon.svg')
+  script.
+    function stream(url) {
+      baseUrl = window.location.origin;
+      var req = new XMLHttpRequest();
+      req.onreadystatechange = () => {
+        if (req.readyState == 4 && req.status != 202) {
+          alert('SERVER API NOT AVAILABLE');
+        }
+        if (req.readyState == 4 && req.status == 202) {
+          alert('Stream started');
+        }
+      }
+      console.log('Open: ' + baseUrl + '/' + url);
+      req.open('PUT', baseUrl + '/' + url, true);
+      req.send();
+    }
+  body(style="background-color:"+background_color)
+   div(class="ui container")
+    h2(class="ui center aligned icon block header")
+      i(class="music icon" style="padding: 20px; color:"+background_color)   
+        h1(style="font-size:.4em; font-family:Lato") Azure Container Apps Greatest Hits
+      div(class="four ui buttons")
+        button(class="ui button" onclick="parent.open('https://aka.ms/aca-docs')") Docs
+        button(class="ui button" onclick="parent.open('http://aka.ms/aca-roadmap')") Public Roadmap
+        button(class="ui button" onclick="parent.open('https://aka.ms/containerapps-discord')") Discord
+        button(class="ui button" onclick="parent.open('https://aka.ms/aca-mailinglist')") Mailing List
+    block content
