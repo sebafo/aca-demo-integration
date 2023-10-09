@@ -32,6 +32,6 @@ module extendedNetwork 'networkExtended.bicep' = if (enableExtendedNetwork) {
 }
 
 output vnetid string = (enableExtendedNetwork) ? extendedNetwork.outputs.vnetid : simpleNetwork.outputs.vnetid
-output vnetName string = (enableExtendedNetwork) ? extendedNetwork.outputs.vnetName : simpleNetwork.outputs.vnetid
-output containerappsSubnetid string = (enableExtendedNetwork) ? extendedNetwork.outputs.containerappsSubnetid : simpleNetwork.outputs.vnetid
+output vnetName string = (enableExtendedNetwork) ? extendedNetwork.outputs.vnetName : simpleNetwork.outputs.vnetName
+output containerappsSubnetid string = (enableExtendedNetwork) ? extendedNetwork.outputs.containerappsSubnetid : simpleNetwork.outputs.containerappsSubnetid
 output gatewaySubnetid string = (enableExtendedNetwork) ? extendedNetwork.outputs.gwSubnetId : ''
