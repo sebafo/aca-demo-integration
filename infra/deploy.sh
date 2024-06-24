@@ -5,7 +5,7 @@ set -e
 ## Define Variables _ UPDATE VALUES
 BASE_NAME="<your base name>"
 LOCATION="northeurope"
-TYPE="default" # none | appgw | frontdoor | default
+TYPE="default" # none | appgw | frontdoor | slim | default
 ######################################
 
 ## Resource Group & Deployment
