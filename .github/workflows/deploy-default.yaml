@@ -33,6 +33,7 @@ jobs:
       - name: Azure CLI script file
         uses: azure/cli@v2
         with:
+            azcliversion: 2.63.0
             inlineScript: |
               LOCATION=${{ inputs.location }} 
               BASE_NAME=${{ inputs.base-name }}
