@@ -42,7 +42,7 @@ jobs:
               if [ $(az group exists --name $RESOURCE_GROUP_NAME) = false ]; then
                 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
               fi
-              az deployment group create --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file infra/main.bicep --parameters infra/parameters.default.json
+              az deployment group create --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file infra/main.bicep --parameters infra/parameters.default.json --parameters baseName=$BASE_NAME
         env:
           LOCATION: ${{ inputs.location }}
           BASE_NAME: ${{ inputs.base-name }}
