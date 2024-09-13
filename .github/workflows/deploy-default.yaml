@@ -2,6 +2,14 @@ name: Deploy Default ACA Demo
 
 on:
   workflow_dispatch:
+    inputs:
+      location:
+        description: 'Location'
+        required: true
+        default: 'northeurope'
+      base-name:
+        description: 'Base name'
+        required: true
   
 permissions:
   id-token: write
@@ -26,9 +34,14 @@ jobs:
         uses: azure/cli@v2
         with:
             inlineScript: |
-              RESOURCE_GROUP_NAME=${{ secrets.BASE_NAME }}-rg
-              DEPLOYMENT_NAME=${{ secrets.BASE_NAME }}-deployment-$(date +%s)
+              LOCATION=${{ inputs.location }} 
+              BASE_NAME=${{ inputs.base-name }}
+              RESOURCE_GROUP_NAME=$BASE_NAME-rg
+              DEPLOYMENT_NAME=$BASE_NAME-deployment-$(date +%s)
               if [ $(az group exists --name $RESOURCE_GROUP_NAME) = false ]; then
                 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
               fi
-              az deployment group create --name $DEPLOYMENT_NAME --location ${{ secrets.LOCATION }} --template-file infra/main.bicep --parameters parameters.default.json
+              az deployment group create --name $DEPLOYMENT_NAME --location $LOCATION --template-file infra/main.bicep --parameters parameters.default.json
+        env:
+          LOCATION: ${{ inputs.location }}
+          BASE_NAME: ${{ inputs.base-name }}
