@@ -59,7 +59,7 @@ jobs:
                 az deployment group create --name $DEPLOYMENT_NAME --resource-group $RESOURCE_GROUP_NAME --template-file infra/main.bicep --parameters infra/parameters.appgw.json \
                   --parameters baseName=$BASE_NAME \
                   --parameters dnsZoneName=${{ secrets.DNS_ZONE_NAME }} \
-                  --parameters dnsZoneRecordNam=${{ inputs.dns-record }} ? ${{ inputs.dns-record }} : ${{ inputs.base-name }} \
+                  --parameters dnsZoneRecordName=${{ inputs.dns-record }} ? ${{ inputs.dns-record }} : ${{ inputs.base-name }} \
                   --parameters certificateKeyVaultName=${{ secrets.CERT_KEY_VAULT_NAME }} \
                   --parameters certificateKeyVaultResourceGroup=${{ secrets.CERT_KEY_VAULT_RG_NAME }} \
                   --parameters certificateSecretId=${{ secrets.CERT_SECRET_ID}}
